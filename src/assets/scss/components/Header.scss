@@ -1,0 +1,19 @@
+.homeNav {
+  margin-right: 30px;
+}
+.Headernavbar {
+  min-height: 70px;
+  padding-left: 10px;
+}
+
+.faviconImg:hover {
+  animation: enlarge 0.3s forwards;
+}
+@keyframes enlarge {
+  from {
+    width: 30px;
+  }
+  to {
+    width: 40px;
+  }
+}
