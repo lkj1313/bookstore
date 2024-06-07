@@ -9,7 +9,7 @@ import {
   Button,
 } from "react-bootstrap";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import auth from "@/firebaseConfig";
+import { auth } from "@/firebaseConfig";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
@@ -99,7 +99,7 @@ const Header = () => {
               )}
               <Nav.Link href="#">
                 <button type="button" className="btn btn-outline-primary">
-                  Basket
+                  Cart
                 </button>
               </Nav.Link>
             </Nav>

@@ -25,6 +25,7 @@ const SearchResultPage = (props: PageProps) => {
   const [books, setBooks] = useState<Book[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [showContent, setShowContent] = useState(false);
+  console.log(props);
 
   const query = decodeURIComponent(props.params.id);
 

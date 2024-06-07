@@ -6,7 +6,7 @@
 @import "./components/Header.scss";
 @import "./components/Footer.scss";
 @import "./components/searchResult.scss";
-@import "./components/UseShowContent.scss";
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -38,4 +38,13 @@ $gray-200: #e9ecef;
 
 .bg-gray-200 {
   background-color: $gray-200;
+}
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.fade-in.show {
+  opacity: 1;
 }
