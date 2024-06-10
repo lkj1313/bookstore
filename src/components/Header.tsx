@@ -1,13 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import {
-  Container,
-  Nav,
-  Navbar,
-  NavDropdown,
-  Form,
-  Button,
-} from "react-bootstrap";
+import { Container, Nav, Navbar, Form, Button } from "react-bootstrap";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "@/firebaseConfig";
 import axios from "axios";

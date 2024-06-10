@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import auth from "@/firebaseConfig";
+import { auth } from "@/firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const page = () => {
