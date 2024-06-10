@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Container } from "react-bootstrap";
+import Link from "next/link";
 
 interface PageProps {
   params: {
@@ -28,6 +29,7 @@ const SearchResultPage = (props: PageProps) => {
   console.log(props);
 
   const query = decodeURIComponent(props.params.id);
+  console.log(books);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -66,7 +68,7 @@ const SearchResultPage = (props: PageProps) => {
   }
 
   return (
-    <div className={showContent ? "fade-in show" : "fade-in"}>
+    <div>
       <Container style={{ marginTop: "30px" }}>
         <div className="row">
           {books
@@ -88,12 +90,17 @@ const SearchResultPage = (props: PageProps) => {
                     overflow: "hidden",
                   }}
                 >
-                  <img
-                    style={{ height: "65%", width: "auto" }}
-                    src={book.image}
-                    className="card-img-top"
-                    alt={book.title}
-                  />
+                  <Link
+                    href={`/book/${book.isbn}`}
+                    style={{ height: "65%", width: "100%" }}
+                  >
+                    <img
+                      style={{ height: "100%", width: "100%" }}
+                      src={book.image}
+                      className={`card-img-top img-darken-on-hover `}
+                      alt={book.title}
+                    />
+                  </Link>
                   <div
                     className="card-body"
                     style={{
@@ -106,7 +113,9 @@ const SearchResultPage = (props: PageProps) => {
                     >
                       {book.title}
                     </h5>
-                    <p style={{ fontWeight: "normal" }}>{book.author}</p>
+                    <p style={{ fontWeight: "normal" }}>
+                      {book.author.replace(/\^/g, ", ")}
+                    </p>
                     <span>₩{parseInt(book.discount).toLocaleString()}</span>
                   </div>
                 </div>

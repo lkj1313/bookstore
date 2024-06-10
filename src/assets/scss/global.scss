@@ -48,3 +48,39 @@ $gray-200: #e9ecef;
 .fade-in.show {
   opacity: 1;
 }
+
+.fade-out {
+  animation: fadeOut 1s forwards;
+}
+
+@keyframes fadeOut {
+  //먼지처럼 사라지기
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.9);
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+    filter: blur(4px);
+  }
+}
+
+button:disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
+}
+
+.img-darken-on-hover {
+  transition: filter 0.3s ease-in-out;
+}
+
+.img-darken-on-hover:hover {
+  filter: brightness(0.7);
+}

@@ -25,7 +25,10 @@ export const BookInfo: React.FC<BookInfoProps> = ({ book }) => (
   <div className="col-12 p-0 border-bottom ">
     <h4>{book.title}</h4>
     <div className="mb-4" style={{ fontSize: "15px" }}>
-      <span>{book.author}</span>
+      <span>
+        {" "}
+        {book.author ? book.author.replace(/\^/g, ", ") : "Unknown Author"}
+      </span>
       <span className="mx-3" style={{ userSelect: "none" }}>
         |
       </span>

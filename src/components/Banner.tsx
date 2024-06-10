@@ -34,7 +34,7 @@ const Banner = () => {
     fetchData3();
     setTimeout(() => {
       setShowContent(true);
-    }, 500); // 1초 후에 콘텐츠를 보여주기
+    }, 500); // 0.5초 후에 콘텐츠를 보여주기
   }, []);
 
   const fetchData = async () => {

@@ -1,5 +1,14 @@
+"use client";
 import React, { useState, useEffect } from "react";
-import { collection, addDoc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  where,
+  updateDoc,
+  doc,
+} from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import { db, auth } from "@/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
@@ -26,6 +35,7 @@ const BookCart: React.FC<BookCartProps> = ({ book }) => {
   const router = useRouter();
 
   useEffect(() => {
+    //로그인 했는지 체크 하고 setuserid 변경
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUserId(user.uid);
@@ -48,23 +58,42 @@ const BookCart: React.FC<BookCartProps> = ({ book }) => {
   };
 
   const handleAddToCart = async () => {
-    // 카트에 넣기 클릭시
     if (!userId) {
       const confirmLogin = window.confirm(
         "로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?"
       );
+
       if (confirmLogin) {
         router.push("/login");
       }
       return;
     }
+
     try {
-      const docRef = await addDoc(collection(db, `users/${userId}/cartItems`), {
-        book,
-        quantity,
-      });
-      console.log("Document written with ID: ", docRef.id);
-      router.push("/cart");
+      // 카트 아이템 컬렉션에서 이미 존재하는 책이 있는지 확인
+      const cartItemsRef = collection(db, `users/${userId}/cartItems`);
+      const q = query(cartItemsRef, where("book.isbn", "==", book.isbn));
+      const querySnapshot = await getDocs(q);
+
+      if (!querySnapshot.empty) {
+        // 이미 있는 책이면 수량 업데이트
+        querySnapshot.forEach(async (doc) => {
+          const newQuantity = doc.data().quantity + quantity;
+          await updateDoc(doc.ref, { quantity: newQuantity });
+        });
+        console.log("Quantity updated for existing book in cart.");
+      } else {
+        // 책이 없으면 새로 추가
+        const docRef = await addDoc(cartItemsRef, { book, quantity });
+        console.log("Document written with ID: ", docRef.id);
+      }
+
+      const cartPageMove = window.confirm(
+        "장바구니에 책이 담겼습니다. 이동하시겠습니까?"
+      );
+      if (cartPageMove) {
+        router.push("/cart");
+      }
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -109,7 +138,9 @@ const BookCart: React.FC<BookCartProps> = ({ book }) => {
         >
           카트에 넣기
         </button>
-        <button className="btn btn-info w-100">바로구매</button>
+        <button type="button" className="btn btn-secondary w-100" disabled>
+          바로구매
+        </button>
       </div>
 
       {/* 추가 정보 */}

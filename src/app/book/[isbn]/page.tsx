@@ -69,13 +69,6 @@ const BookPage = (props: PageProps) => {
             <BookInfo book={book} />
             <BookPrice book={book} />
             <BookDelivery />
-            {/* <button
-              type="button"
-              className="btn btn-primary mt-3"
-              style={{ textAlign: "center" }}
-            >
-              Cart
-            </button> */}
           </div>
         </div>
         <BookCart book={book} />

@@ -27,8 +27,8 @@ const BannerSlide: React.FC<BannerSlideProps> = ({ results }) => {
               href={`/book/${item.isbn}`}
               passHref
             >
-              <div className="row bannerSlideRowContainer">
-                <div className="col-4">
+              <div className="row bannerSlideRowContainer img-darken-on-hover">
+                <div className="col-4 ">
                   <img
                     className="d-block position-relative"
                     style={{
@@ -38,8 +38,8 @@ const BannerSlide: React.FC<BannerSlideProps> = ({ results }) => {
                       margin: "10px",
                       boxSizing: "border-box",
                     }}
-                    src={item.image} // 이미지의 URL을 이미지 객체에서 가져옵니다.
-                    alt={item.title} // 이미지의 대체 텍스트를 이미지 객체에서 가져옵니다.
+                    src={item.image}
+                    alt={item.title}
                   />
                 </div>
                 <div className="col-8">

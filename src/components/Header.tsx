@@ -32,10 +32,12 @@ const Header = () => {
   }, []);
 
   const handleLogout = async () => {
+    //로그아웃
     try {
       const question = confirm("정말 로그아웃 하시겠습니까?");
       if (question) {
         await signOut(auth);
+        window.location.href = "/"; // 로그아웃 후 '/'로 새로고침하며 이동
       }
     } catch (error) {
       console.error("Error signing out: ", error);
@@ -57,6 +59,21 @@ const Header = () => {
     fetchData();
     router.push(`
     /searchResult/${query}`);
+  };
+
+  const handleCartClick = () => {
+    // 로그인 상태에서만 카트페이지로 이동 가능하게 만드는 함수
+    if (isLoggedIn) {
+      router.push("/cart");
+    } else {
+      const confirmLogin = window.confirm(
+        "로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?"
+      );
+
+      if (confirmLogin) {
+        router.push("/login");
+      }
+    }
   };
 
   return (
@@ -97,7 +114,7 @@ const Header = () => {
                   </button>
                 </Nav.Link>
               )}
-              <Nav.Link href="#">
+              <Nav.Link onClick={handleCartClick}>
                 <button type="button" className="btn btn-outline-primary">
                   Cart
                 </button>
