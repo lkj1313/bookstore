@@ -4,16 +4,15 @@ import dotenv from "dotenv";
 import cors from "cors";
 
 // .env 파일의 경로를 지정합니다.
-dotenv.config({ path: "../../.env" });
+dotenv.config();
 
 const app = express();
 app.use(cors());
-const port = 9999;
 
 const clientId = process.env.Id;
 const clientSecret = process.env.Password;
 
-app.get("/search/book", async (req, res) => {
+app.get("/api/search/book", async (req, res) => {
   try {
     const { query, display } = req.query;
     console.log(req.query);
@@ -39,6 +38,4 @@ app.get("/search/book", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
-});
+export default app;
