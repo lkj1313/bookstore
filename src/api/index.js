@@ -7,7 +7,12 @@ import cors from "cors";
 dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: "*", // 모든 도메인에서의 요청을 허용
+    methods: ["GET", "POST"], // 허용할 HTTP 메서드
+  })
+);
 
 const clientId = process.env.Id;
 const clientSecret = process.env.Password;
