@@ -12,7 +12,7 @@
   ],
   "routes": [
     {
-      "src": "/book/(.*)",
+      "src": "/api/(.*)",
       "dest": "src/api/index.js"
     },
     {
