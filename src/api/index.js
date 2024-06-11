@@ -42,6 +42,4 @@ app.listen(port, () => {
 });
 
 // Vercel의 서버리스 함수로 Express 앱을 사용
-export default (req, res) => {
-  app(req, res);
-};
+module.exports = app;
