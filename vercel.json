@@ -1,1 +1,19 @@
-{ "version": 2, "rewrites": [{ "source": "/(.*)", "destination": "/api" }] }
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "src/api/index.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "src/pages/**/*",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/search/book",
+      "dest": "/src/api/index.js"
+    }
+  ]
+}
