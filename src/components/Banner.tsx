@@ -53,7 +53,9 @@ const Banner = () => {
   const fetchData2 = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:9999/search/book?query=${encodeURI(query2)}&display=5`
+        `${process.env.NEXT_PUBLIC_API_URL}/search/book?query=${encodeURI(
+          query2
+        )}&display=5`
       );
       setResults2(response.data.items);
     } catch (err: any) {
