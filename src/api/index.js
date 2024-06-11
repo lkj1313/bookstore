@@ -4,9 +4,12 @@ import dotenv from "dotenv";
 import cors from "cors";
 
 // 환경 변수 로드
-dotenv.config();
+dotenv.config({ path: "../../.env" });
 
 const app = express();
+console.log("Client ID:", process.env.Id);
+console.log("Client ID:", process.env.Password);
+console.log("Client Secret:", process.env.NEXT_PUBLIC_API_URL);
 app.use(
   cors({
     origin: "*", // 모든 도메인에서의 요청을 허용
