@@ -4,9 +4,10 @@ import dotenv from "dotenv";
 import cors from "cors";
 
 // .env 파일의 경로를 지정합니다.
-dotenv.config();
+dotenv.config({ path: "../../.env" });
 
 const app = express();
+const port = 9999;
 app.use(cors());
 
 const clientId = process.env.Id;
@@ -15,8 +16,7 @@ const clientSecret = process.env.Password;
 app.get("/api/search/book", async (req, res) => {
   try {
     const { query, display } = req.query;
-    console.log(req.query);
-    const apiUrl = `https://openapi.naver.com/v1/search/book.json?query=${encodeURI(
+    const apiUrl = `https://openapi.naver.com/v1/search/book.json?query=${encodeURIComponent(
       query
     )}&display=${display}`;
     const response = await axios.get(apiUrl, {
@@ -37,5 +37,11 @@ app.get("/api/search/book", async (req, res) => {
       .send(error.response ? error.response.data : "Internal Server Error");
   }
 });
+app.listen(port, () => {
+  console.log(`Server is running at http://localhost:${port}`);
+});
 
-export default app;
+// Vercel의 서버리스 함수로 Express 앱을 사용
+export default (req, res) => {
+  app(req, res);
+};
