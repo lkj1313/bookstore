@@ -13,7 +13,7 @@ app.use(cors());
 const clientId = process.env.Id;
 const clientSecret = process.env.Password;
 
-app.get("/api/search/book", async (req, res) => {
+app.get("/search/book", async (req, res) => {
   try {
     const { query, display } = req.query;
     const apiUrl = `https://openapi.naver.com/v1/search/book.json?query=${encodeURIComponent(
@@ -42,4 +42,4 @@ app.listen(port, () => {
 });
 
 // Vercel의 서버리스 함수로 Express 앱을 사용
-module.exports = app;
+export default app;
