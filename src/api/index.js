@@ -8,8 +8,8 @@ dotenv.config({ path: "../../.env" });
 
 const app = express();
 console.log("Client ID:", process.env.Id);
-console.log("Client ID:", process.env.Password);
-console.log("Client Secret:", process.env.NEXT_PUBLIC_API_URL);
+console.log("Client Password:", process.env.Password);
+console.log("url:", process.env.NEXT_PUBLIC_API_URL);
 app.use(
   cors({
     origin: "*", // 모든 도메인에서의 요청을 허용
