@@ -39,7 +39,7 @@ const Header = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/search/book?query=${encodeURI(
+        `https://bookstore-phi-five.vercel.app/search/book?query=${encodeURI(
           query
         )}&display=5`
       );

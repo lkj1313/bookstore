@@ -33,7 +33,7 @@ const BookPage = (props: PageProps) => {
       const fetchBook = async () => {
         try {
           const response = await axios.get(
-            `${process.env.NEXT_PUBLIC_API_URL}/search/book`,
+            `https://bookstore-phi-five.vercel.app/search/book`,
             {
               params: { query: isbn, display: 1 },
             }

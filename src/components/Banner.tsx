@@ -27,7 +27,7 @@ const Banner = () => {
   const [query3, setQuery3] = useState<string>("강아지");
   const [results3, setResults3] = useState<Result[]>([]);
   const [showContent, setShowContent] = useState<boolean>(false);
-
+  console.log(process.env);
   useEffect(() => {
     fetchData();
     fetchData2();
@@ -39,8 +39,10 @@ const Banner = () => {
 
   const fetchData = async () => {
     try {
+      console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
+
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/search/book?query=${encodeURI(
+        `https://bookstore-phi-five.vercel.app/search/book?query=${encodeURI(
           query
         )}&display=5`
       );
@@ -53,7 +55,7 @@ const Banner = () => {
   const fetchData2 = async () => {
     try {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/search/book?query=${encodeURI(
+        `https://bookstore-phi-five.vercel.app/search/book?query=${encodeURI(
           query2
         )}&display=5`
       );
@@ -65,7 +67,9 @@ const Banner = () => {
   const fetchData3 = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:9999/search/book?query=${encodeURI(query3)}&display=5`
+        `https://bookstore-phi-five.vercel.app/search/book?query=${encodeURI(
+          query3
+        )}&display=5`
       );
       setResults3(response.data.items);
     } catch (err: any) {

@@ -35,7 +35,7 @@ const SearchResultPage = (props: PageProps) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/search/book?query=${query}&display=36`
+          `https://bookstore-phi-five.vercel.app/search/book?query=${query}&display=36`
         );
         const items = response.data.items;
         setBooks(items);
