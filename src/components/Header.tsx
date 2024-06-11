@@ -39,7 +39,9 @@ const Header = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:9999/search/book?query=${encodeURI(query)}&display=5`
+        `${process.env.NEXT_PUBLIC_API_URL}/search/book?query=${encodeURI(
+          query
+        )}&display=5`
       );
 
       setResults(response.data.items);

@@ -35,7 +35,7 @@ const SearchResultPage = (props: PageProps) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:9999/search/book?query=${query}&display=36`
+          `${process.env.NEXT_PUBLIC_API_URL}/search/book?query=${query}&display=36`
         );
         const items = response.data.items;
         setBooks(items);
