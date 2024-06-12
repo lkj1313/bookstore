@@ -28,14 +28,13 @@ const BannerSlide: React.FC<BannerSlideProps> = ({ results }) => {
               passHref
             >
               <div className="row bannerSlideRowContainer img-darken-on-hover">
-                <div className="col-4 ">
+                <div className="col-4 d-flex justify-content-center align-items-center p-2">
                   <img
                     className="d-block position-relative"
                     style={{
-                      left: "50px",
-                      width: "40%",
-                      height: "12rem",
-                      margin: "10px",
+                      width: "50%",
+                      height: "100%",
+                      marginLeft: "5px",
                       boxSizing: "border-box",
                     }}
                     src={item.image}
