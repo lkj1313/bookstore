@@ -6,6 +6,7 @@ import { BookInfo } from "@/components/book/BookInfo";
 import { BookPrice } from "@/components/book/BookPrice";
 import { BookDelivery } from "@/components/book/BookDelivery";
 import BookCart from "@/components/book/BookCart";
+import { Container } from "react-bootstrap";
 
 interface PageProps {
   params: {
@@ -49,30 +50,34 @@ const BookPage = (props: PageProps) => {
   }, [isbn]);
 
   return (
-    <div className="container mt-4 ">
-      <div className="row d-flex align-items-stretch">
-        <div className="col-4 d-flex flex-column p-0">
-          <img
-            style={{
-              width: "auto",
-              height: "100%",
-              objectFit: "cover",
-              marginBottom: "10px",
-            }}
-            className="book-image"
-            src={book.image}
-            alt="Book cover"
-          />
-        </div>
-        <div className="col-6 ms-4 position-relative">
-          <div className="row">
-            <BookInfo book={book} />
-            <BookPrice book={book} />
-            <BookDelivery />
+    <div className="container mt-4">
+      <Container>
+        <div className="row">
+          <div className="col-12 col-md-4 d-flex flex-column p-0">
+            <img
+              style={{
+                width: "100%",
+                height: "auto",
+                objectFit: "cover",
+                marginBottom: "10px",
+              }}
+              className="book-image"
+              src={book.image}
+              alt="Book cover"
+            />
+          </div>
+          <div className="col-12 col-md-7 ms-md-4 position-relative">
+            <div className="row">
+              <BookInfo book={book} />
+              <BookPrice book={book} />
+              <BookDelivery />
+            </div>
+          </div>
+          <div className="col-12 mt-4 p-0">
+            <BookCart book={book} />
           </div>
         </div>
-        <BookCart book={book} />
-      </div>
+      </Container>
     </div>
   );
 };
