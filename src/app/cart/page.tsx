@@ -204,7 +204,7 @@ const CartPage = () => {
         </div>
       )}
 
-      <div className="row">
+      <div className="row mb-3">
         <div className="col-12 text-end">
           <h5>총 상품금액: {formatPrice(calculateTotal())}원</h5>
           <button className="btn btn-primary" disabled>
