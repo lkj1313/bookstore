@@ -39,7 +39,7 @@ const page = () => {
   return (
     <div
       style={{
-        height: "70vh",
+        height: "80vh",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -58,7 +58,7 @@ const page = () => {
                       type="email"
                       className="form-control"
                       id="username"
-                      placeholder="Enter username"
+                      placeholder="Enter useremail"
                       value={email}
                       onChange={(
                         e: React.ChangeEvent<HTMLInputElement>

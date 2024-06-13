@@ -27,8 +27,8 @@ const BannerSlide: React.FC<BannerSlideProps> = ({ results }) => {
               href={`/book/${item.isbn}`}
               passHref
             >
-              <div className="row bannerSlideRowContainer img-darken-on-hover">
-                <div className="col-4 d-flex justify-content-center align-items-center p-2">
+              <div className="row bannerSlideRowContainer img-darken-on-hover d-flex flex-wrap">
+                <div className="col-12 col-md-4 d-flex justify-content-center align-items-center p-2">
                   <img
                     className="d-block position-relative"
                     style={{
@@ -41,9 +41,9 @@ const BannerSlide: React.FC<BannerSlideProps> = ({ results }) => {
                     alt={item.title}
                   />
                 </div>
-                <div className="col-8">
+                <div className="col-12 col-md-8 d-flex flex-column ">
                   <div style={{ marginTop: "10px", boxSizing: "border-box" }}>
-                    <div className="customLink">
+                    <div className="customLink md-flex">
                       <p
                         className="fs-4"
                         style={{

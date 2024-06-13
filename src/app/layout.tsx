@@ -32,12 +32,10 @@ export default function RootLayout({
             margin: 0,
           }}
         >
-          <div style={{ flex: "1", display: "flex", flexDirection: "column" }}>
-            <Header />
-            {children}
-          </div>
-          <Footer />
+          <Header />
+          {children}
         </div>
+        <Footer />
       </body>
     </html>
   );

@@ -29,14 +29,15 @@ const Page = () => {
   return (
     <div
       style={{
-        height: "70vh",
+        height: "80vh",
+        margin: "0",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
       }}
     >
       <div className="container">
-        <div className="row justify-content-center mt-5">
+        <div className="row d-flex align-items-center justify-content-center mt-5">
           <div className="col-md-6">
             <div className="card">
               <div className="card-header">Login</div>
@@ -52,7 +53,7 @@ const Page = () => {
                       type="email"
                       className="form-control"
                       id="username"
-                      placeholder="Enter username"
+                      placeholder="Enter email"
                     />
                   </div>
                   <div className="form-group">
