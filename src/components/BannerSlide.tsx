@@ -45,7 +45,7 @@ const BannerSlide: React.FC<BannerSlideProps> = ({ results }) => {
                   <div style={{ marginTop: "10px", boxSizing: "border-box" }}>
                     <div className="customLink md-flex">
                       <p
-                        className="fs-4"
+                        className="fs-4 text-center text-md-start"
                         style={{
                           marginBottom: "0",
                           marginRight: "10px",
@@ -55,7 +55,7 @@ const BannerSlide: React.FC<BannerSlideProps> = ({ results }) => {
                         {item.title}
                       </p>
                       <p
-                        className="fw-normal"
+                        className="fw-normal text-center text-md-start"
                         style={{ marginTop: "20px", marginBottom: "40px" }}
                       >
                         {item.author}
