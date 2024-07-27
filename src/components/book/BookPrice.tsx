@@ -13,7 +13,7 @@ const formatPrice = (price: number) => {
 };
 
 export const BookPrice: React.FC<BookPriceProps> = ({ book }) => (
-  <div className="col-12 border-bottom p-0 pt-4 pb-4">
+  <div className="col-12 border-bottom p-3 pt-4 pb-4">
     <div className="row centered-row">
       <div className="col-3 label">
         <span>정가</span>

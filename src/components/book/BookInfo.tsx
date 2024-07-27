@@ -22,7 +22,7 @@ const formatDate = (dateStr?: string): string => {
 };
 
 export const BookInfo: React.FC<BookInfoProps> = ({ book }) => (
-  <div className="col-12 p-0 border-bottom ">
+  <div className="col-12 p-3 border-bottom ">
     <h4>{book.title}</h4>
     <div className="mb-4" style={{ fontSize: "15px" }}>
       <span>

@@ -72,8 +72,8 @@ const Header = () => {
   };
 
   return (
-    <Container>
-      <Navbar expand="lg" className="bg-body-tertiary ">
+    <div className="container " style={{ padding: "0 !important" }}>
+      <Navbar expand="lg" className="bg-body-tertiary m-0">
         <Container fluid>
           <Navbar.Brand href="/">
             <img
@@ -131,7 +131,7 @@ const Header = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-    </Container>
+    </div>
   );
 };
 

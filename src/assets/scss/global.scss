@@ -22,8 +22,7 @@ p {
   font-family: "Roboto", sans-serif;
   font-weight: 700;
 }
-
-.rato-paragraph {
+.container .rato-paragraph {
   font-family: "Rato, sans-serif";
   font-weight: 600; /* 폰트 두께 설정 */
   font-style: italic; /* 이탤릭체 설정 */
@@ -83,4 +82,10 @@ button:disabled {
 
 .img-darken-on-hover:hover {
   filter: brightness(0.7);
+}
+@media (max-width: 400px) {
+  .container {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
 }

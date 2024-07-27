@@ -51,33 +51,31 @@ const BookPage = (props: PageProps) => {
 
   return (
     <div className="container mt-4">
-      <Container>
-        <div className="row">
-          <div className="col-12 col-md-4 d-flex flex-column p-0">
-            <img
-              style={{
-                width: "100%",
-                height: "auto",
-                objectFit: "cover",
-                marginBottom: "10px",
-              }}
-              className="book-image"
-              src={book.image}
-              alt="Book cover"
-            />
-          </div>
-          <div className="col-12 col-md-7 ms-md-4 position-relative">
-            <div className="row">
-              <BookInfo book={book} />
-              <BookPrice book={book} />
-              <BookDelivery />
-            </div>
-          </div>
-          <div className="col-12 mt-4 p-0">
-            <BookCart book={book} />
+      <div className="row">
+        <div className="col-12 col-md-4 d-flex flex-column p-0">
+          <img
+            style={{
+              width: "100%",
+              height: "auto",
+              // objectFit: "cover",
+              marginBottom: "10px",
+            }}
+            className="book-image"
+            src={book.image}
+            alt="Book cover"
+          />
+        </div>
+        <div className="col-12 col-md-7 ms-md-4 position-relative">
+          <div className="row">
+            <BookInfo book={book} />
+            <BookPrice book={book} />
+            <BookDelivery />
           </div>
         </div>
-      </Container>
+        <div className="col-12 mt-4 p-0">
+          <BookCart book={book} />
+        </div>
+      </div>
     </div>
   );
 };
