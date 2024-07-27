@@ -2,7 +2,7 @@
 
 ![Bookstore Logo](https://github.com/lkj1313/bookstore/raw/main/public/favicon.png)
 
-React, Firebase, TypeScript, Express, 네이버API를 사용하여 만든 웹 기반 북스토어 애플리케이션입니다. 이 애플리케이션은 사용자가 회원가입 및 로그인, 책 검색, 책 상세 정보 보기, 카트에 책 담기 등등의 기능을 제공합니다. 또한 Express를 사용하여 네이버 API를 통합하였습니다.
+React, Firebase, TypeScript, Express, 네이버 API를 사용하여 만든 웹 기반 북스토어 애플리케이션입니다. 이 애플리케이션은 사용자가 회원가입 및 로그인, 책 검색, 책 상세 정보 보기, 카트에 책 담기 등의 기능을 제공합니다.
 
 ## 주요 기능
 
@@ -10,7 +10,7 @@ React, Firebase, TypeScript, Express, 네이버API를 사용하여 만든 웹 �
 - **책 검색 및 필터링**: 다양한 기준으로 책을 검색하고 필터링할 수 있습니다.
 - **메인 페이지 추천 북 슬라이스**: 주요 추천 책을 슬라이드 형태로 표시합니다.
 - **책 상세 정보**: 책의 상세 정보를 확인할 수 있습니다.
-- **장바구니**: 선택한 책을 장바구니에 담을수 있습니다.
+- **장바구니**: 선택한 책을 장바구니에 담을 수 있습니다.
 - **부트스트랩 UI**: 부트스트랩을 사용하여 반응형 디자인을 구현하였습니다.
 - **Express와 네이버 API 통합**: Express 서버를 사용하여 네이버 API를 통한 데이터 통합을 구현하였습니다.
 
@@ -39,31 +39,23 @@ React, Firebase, TypeScript, Express, 네이버API를 사용하여 만든 웹 �
    npm install
    ```
 
-3. TypeScript 및 관련 패키지를 설치합니다:
+3. 환경 변수 설정 파일 생성:
 
-   ```bash
-   npm install --save-dev typescript @types/react @types/node
-   ```
-
-4. 환경 변수 설정 파일 생성:
-
-```bash
    프로젝트 루트 디렉토리에 `.env` 파일을 생성하고, 네이버 API의 키를 받아옵니다.
-```
 
-5. `tsconfig.json` 파일을 생성합니다:
+4. `tsconfig.json` 파일을 생성합니다:
 
    ```bash
    npx tsc --init
    ```
 
-6. 개발 서버를 시작합니다:
+5. 개발 서버를 시작합니다:
 
    ```bash
    npm run dev
    ```
 
-7. 브라우저를 열고 `http://localhost:3000`로 이동합니다.
+6. 브라우저를 열고 `http://localhost:3000`로 이동합니다.
 
 ## 배포
 
@@ -87,7 +79,7 @@ React, Firebase, TypeScript, Express, 네이버API를 사용하여 만든 웹 �
 
 ## 코드 예제
 
-### 책 검색 컴포넌트
+### 로그인 페이지 컴포넌트
 
 ```typescript
 "use client";
