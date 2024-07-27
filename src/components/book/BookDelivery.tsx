@@ -3,7 +3,7 @@
 import React from "react";
 
 export const BookDelivery: React.FC = () => (
-  <div className="col-12 p-0 pt-4  mb-4">
+  <div className="col-12 p-3 pt-4  mb-4">
     <div className="row centered-row">
       <div className="col-3 label">
         <span>배송안내</span>
