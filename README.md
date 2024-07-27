@@ -73,6 +73,7 @@ React, Firebase, TypeScript, Express, 네이버API를 사용하여 만든 웹 �
 
 ## 사용 방법
 
+<<<<<<< HEAD
 ### 회원 가입 및 로그인
 
 1. 애플리케이션을 열고 회원 가입 페이지로 이동합니다.
@@ -185,3 +186,10 @@ const Page = () => {
 
 export default Page;
 ```
+=======
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+
+vercel 주소 :https://bookstore-phi-five.vercel.app/ 
+>>>>>>> 42670ff02b3dc8a022bfc71b698bd1b41704e5f5
