@@ -2,7 +2,7 @@
 
 ![Bookstore Logo](https://github.com/lkj1313/bookstore/raw/main/public/favicon.png)
 
-React, Firebase, TypeScript, Express, 네이버API를 사용하여 만든 웹 기반 북스토어 애플리케이션입니다. 이 애플리케이션은 사용자가 회원가입 및 로그인, 책 검색, 책 상세 정보 보기, 카트에 책 담기 등등의 기능을 제공합니다. 또한 Express를 사용하여 네이버 API를 통합하였습니다.
+React, NextJs Firebase, TypeScript, Express, 네이버API를 사용하여 만든 웹 기반 북스토어 애플리케이션입니다. 이 애플리케이션은 사용자가 회원가입 및 로그인, 책 검색, 책 상세 정보 보기, 카트에 책 담기 등등의 기능을 제공합니다. 또한 Express를 사용하여 네이버 API를 통합하였습니다.
 
 ## 주요 기능
 
@@ -74,6 +74,7 @@ React, Firebase, TypeScript, Express, 네이버API를 사용하여 만든 웹 �
 ## 사용 방법
 
 <<<<<<< HEAD
+
 ### 회원 가입 및 로그인
 
 1. 애플리케이션을 열고 회원 가입 페이지로 이동합니다.
@@ -186,10 +187,10 @@ const Page = () => {
 
 export default Page;
 ```
+
 =======
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
+vercel 주소 :https://bookstore-phi-five.vercel.app/
 
-
-vercel 주소 :https://bookstore-phi-five.vercel.app/ 
->>>>>>> 42670ff02b3dc8a022bfc71b698bd1b41704e5f5
+> > > > > > > 42670ff02b3dc8a022bfc71b698bd1b41704e5f5
