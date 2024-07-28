@@ -18,60 +18,53 @@ interface Result {
 }
 
 const Banner = () => {
-  const [query, setQuery] = useState<string>("프론트엔드");
   const [results, setResults] = useState<Result[]>([]);
-
-  const [query2, setQuery2] = useState<string>("건강");
   const [results2, setResults2] = useState<Result[]>([]);
-
-  const [query3, setQuery3] = useState<string>("강아지");
   const [results3, setResults3] = useState<Result[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [showContent, setShowContent] = useState<boolean>(false);
 
   useEffect(() => {
-    fetchData();
-    fetchData2();
-    fetchData3();
-    setTimeout(() => {
-      setShowContent(true);
-    }, 500); // 0.5초 후에 콘텐츠를 보여주기
+    fetchAllData();
   }, []);
 
-  const fetchData = async () => {
+  const fetchAllData = async () => {
     try {
-      const response = await axios.get(
-        `https://bookstore-phi-five.vercel.app/search/book?query=${encodeURI(
-          query
-        )}&display=5`
-      );
-      setResults(response.data.items);
-    } catch (err: any) {
-      console.log(err);
-    }
-  };
+      const [response1, response2, response3] = await Promise.all([
+        axios.get(
+          `https://bookstore-phi-five.vercel.app/search/book?query=${encodeURI(
+            "프론트엔드"
+          )}&display=30`
+        ),
+        axios.get(
+          `https://bookstore-phi-five.vercel.app/search/book?query=${encodeURI(
+            "건강"
+          )}&display=5`
+        ),
+        axios.get(
+          `https://bookstore-phi-five.vercel.app/search/book?query=${encodeURI(
+            "강아지"
+          )}&display=5`
+        ),
+      ]);
 
-  const fetchData2 = async () => {
-    try {
-      const response = await axios.get(
-        `https://bookstore-phi-five.vercel.app/search/book?query=${encodeURI(
-          query2
-        )}&display=5`
-      );
-      setResults2(response.data.items);
+      const books = response1.data.items;
+      if (books.length < 5) {
+        console.log("선택할 수 있는 책이 충분하지 않습니다.");
+        setResults(books);
+      } else {
+        const shuffledBooks = books.sort(() => 0.5 - Math.random());
+        const selectedBooks = shuffledBooks.slice(0, 5);
+        setResults(selectedBooks);
+      }
+
+      setResults2(response2.data.items);
+      setResults3(response3.data.items);
     } catch (err: any) {
       console.log(err);
-    }
-  };
-  const fetchData3 = async () => {
-    try {
-      const response = await axios.get(
-        `https://bookstore-phi-five.vercel.app/search/book?query=${encodeURI(
-          query3
-        )}&display=5`
-      );
-      setResults3(response.data.items);
-    } catch (err: any) {
-      console.log(err);
+    } finally {
+      setIsLoading(false);
+      setShowContent(true);
     }
   };
 

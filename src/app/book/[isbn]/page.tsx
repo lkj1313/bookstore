@@ -30,9 +30,12 @@ const BookPage = (props: PageProps) => {
   const { isbn } = props.params;
   const [book, setBook] = useState<Book>({});
   const [showModal, setShowModal] = useState(false);
+  const [showContent, setShowContent] = useState<boolean>(false);
+
   const handleOpenModal = () => {
     setShowModal(true);
   };
+
   useEffect(() => {
     if (isbn) {
       const fetchBook = async () => {
@@ -44,6 +47,7 @@ const BookPage = (props: PageProps) => {
             }
           );
           setBook(response.data.items[0]);
+          setShowContent(true); // 데이터 로드 완료 후 showContent를 true로 설정
         } catch (error) {
           console.error("Error fetching book data:", error);
         }
@@ -54,33 +58,35 @@ const BookPage = (props: PageProps) => {
   }, [isbn]);
 
   return (
-    <div className="container mt-4">
-      <div className="row">
-        <div className="col-12 col-md-4 d-flex flex-column p-0">
-          <img
-            style={{
-              width: "100%",
-              height: "auto",
-              // objectFit: "cover",
-              marginBottom: "10px",
-            }}
-            className="book-image"
-            src={book.image}
-            alt="Book cover"
-          />
-        </div>
-        <div className="col-12 col-md-7 ms-md-4 position-relative">
-          <div className="row">
-            <BookInfo book={book} />
-            <BookPrice book={book} />
-            <BookDelivery />
+    <div className={`fade-in ${showContent ? "show" : ""}`}>
+      <div className="container mt-4">
+        <div className="row">
+          <div className="col-12 col-md-4 d-flex flex-column p-0">
+            <img
+              style={{
+                height: "500px",
+                width: "auto",
+                // objectFit: "cover",
+                marginBottom: "10px",
+              }}
+              className="book-image"
+              src={book.image}
+              alt="Book cover"
+            />
+          </div>
+          <div className="col-12 col-md-7 ms-md-4 position-relative">
+            <div className="row">
+              <BookInfo book={book} />
+              <BookPrice book={book} />
+              <BookDelivery />
+            </div>
+          </div>
+          <div className="col-12 mt-4 p-0">
+            <BookCart book={book} />
           </div>
         </div>
-        <div className="col-12 mt-4 p-0">
-          <BookCart book={book} />
-        </div>
+        <BookReview book={book} />
       </div>
-      <BookReview book={book} />
     </div>
   );
 };

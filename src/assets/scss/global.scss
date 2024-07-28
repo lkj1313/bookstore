@@ -41,11 +41,11 @@ $gray-200: #e9ecef;
 
 .fade-in {
   opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
+  transition: opacity 0.5s ease-in-out;
 
-.fade-in.show {
-  opacity: 1;
+  &.show {
+    opacity: 1;
+  }
 }
 
 .fade-out {
