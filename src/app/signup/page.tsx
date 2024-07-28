@@ -9,6 +9,7 @@ const page = () => {
   const [password, setPassword] = useState("");
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const router = useRouter();
+
   const signUpWithEmailAndPassword = async (
     email: string,
     password: string
@@ -22,10 +23,28 @@ const page = () => {
       alert("회원가입 완료! 로그인해주세요");
       router.push("/login");
       // 회원가입 성공 시 필요한 동작을 수행합니다.
-    } catch (error) {
-      alert("회원가입실패: 이메일 또는 비밀번호가 잘못되었습니다");
-      // 회원가입 실패 시 에러 처리를 수행합니다.
-      throw error;
+    } catch (error: any) {
+      // Firebase 에러 코드에 따른 메시지 처리
+      let errorMessage = "회원가입 실패: ";
+      switch (error.code) {
+        case "auth/email-already-in-use":
+          errorMessage += "이미 사용 중인 이메일입니다.";
+          break;
+        case "auth/invalid-email":
+          errorMessage += "유효하지 않은 이메일 형식입니다.";
+          break;
+        case "auth/operation-not-allowed":
+          errorMessage += "이메일/비밀번호 계정이 비활성화되었습니다.";
+          break;
+        case "auth/weak-password":
+          errorMessage += "비밀번호가 너무 약합니다.";
+          break;
+        default:
+          errorMessage += error.message;
+          break;
+      }
+      alert(errorMessage);
+      throw error; // 에러를 다시 던져서 필요시 호출하는 곳에서 추가로 처리할 수 있도록 합니다.
     }
   };
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import {
   collection,
   query,
@@ -19,6 +18,7 @@ import ReviewList from "./ReviewList";
 import ReviewForm from "./ReviewForm";
 import { onAuthStateChanged } from "firebase/auth";
 
+// 리뷰 타입 정의
 export interface Review {
   id: string;
   bookId: string;
@@ -30,6 +30,7 @@ export interface Review {
   userId: string;
 }
 
+// 책 타입 정의
 interface Book {
   author?: string;
   description?: string;
@@ -42,17 +43,20 @@ interface Book {
   title?: string;
 }
 
+// 컴포넌트 프로퍼티 타입 정의
 interface BookReviewProps {
   book: Book;
 }
 
+// BookReview 컴포넌트 정의
 const BookReview: React.FC<BookReviewProps> = ({ book }) => {
-  const [reviews, setReviews] = useState<Review[]>([]);
-  const [showModal, setShowModal] = useState(false);
-  const [averageRating, setAverageRating] = useState(0);
+  const [reviews, setReviews] = useState<Review[]>([]); // 리뷰 목록 상태
+  const [showModal, setShowModal] = useState(false); // 모달 표시 상태
+  const [averageRating, setAverageRating] = useState(0); // 평균 평점 상태
   const [likedReviews, setLikedReviews] = useState<string[]>([]); // 좋아요를 누른 리뷰 ID를 저장
-  const [currentUserId, setCurrentUserId] = useState<string | null>(null);
+  const [currentUserId, setCurrentUserId] = useState<string | null>(null); // 현재 사용자 ID 상태
 
+  // 현재 사용자 ID 설정
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -64,6 +68,8 @@ const BookReview: React.FC<BookReviewProps> = ({ book }) => {
 
     return () => unsubscribe();
   }, []);
+
+  // 리뷰 목록 가져오기
   const fetchReviews = async () => {
     if (book.isbn) {
       const q = query(
@@ -96,14 +102,17 @@ const BookReview: React.FC<BookReviewProps> = ({ book }) => {
     }
   };
 
+  // 책 정보가 변경될 때마다 리뷰 목록을 가져옴
   useEffect(() => {
     fetchReviews();
   }, [book]);
 
+  // 모달 열기
   const handleOpenModal = () => {
     setShowModal(true);
   };
 
+  // 리뷰 저장
   const handleSaveReview = async (
     review: string,
     rating: number,
@@ -140,6 +149,7 @@ const BookReview: React.FC<BookReviewProps> = ({ book }) => {
     }
   };
 
+  // 좋아요 토글
   const handleLike = async (reviewId: string, currentLikes: number) => {
     const alreadyLiked = likedReviews.includes(reviewId);
 
@@ -160,6 +170,7 @@ const BookReview: React.FC<BookReviewProps> = ({ book }) => {
     }
   };
 
+  // 리뷰 삭제
   const handleDeleteReview = async (reviewId: string) => {
     const confirmDelete = window.confirm("정말 이 리뷰를 삭제하시겠습니까?");
     if (!confirmDelete) {
@@ -174,13 +185,14 @@ const BookReview: React.FC<BookReviewProps> = ({ book }) => {
     }
   };
 
+  // 컴포넌트 렌더링
   return (
     <div
       className="col-12 mt-5 p-0"
       style={{ display: "flex", flexDirection: "column" }}
     >
-      <ReviewForm onOpenModal={handleOpenModal} />
-      <AverageRating averageRating={averageRating} />
+      <ReviewForm onOpenModal={handleOpenModal} /> {/* 리뷰 작성 폼 */}
+      <AverageRating averageRating={averageRating} /> {/* 평균 평점 */}
       <ReviewList
         reviews={reviews}
         bookTitle={book.title || ""}
@@ -194,9 +206,11 @@ const BookReview: React.FC<BookReviewProps> = ({ book }) => {
         showModal={showModal}
         setShowModal={setShowModal}
         onSave={handleSaveReview}
+        currentUserId={currentUserId}
       />
     </div>
   );
 };
+``;
 
 export default BookReview;

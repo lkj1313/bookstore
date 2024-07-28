@@ -20,6 +20,7 @@ interface ModalProps {
   setShowModal: (show: boolean) => void;
   book: Book;
   onSave: (review: string, rating: number, userId: string) => void;
+  currentUserId: string | null;
 }
 
 const ModalComponent: React.FC<ModalProps> = ({
@@ -27,17 +28,10 @@ const ModalComponent: React.FC<ModalProps> = ({
   setShowModal,
   book,
   onSave,
+  currentUserId,
 }) => {
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState("");
-  const [currentUserId, setCurrentUserId] = useState<string | null>(null);
-
-  useEffect(() => {
-    const user = auth.currentUser;
-    if (user) {
-      setCurrentUserId(user.uid);
-    }
-  }, []);
 
   const handleClose = () => setShowModal(false);
   const handleRatingChange = (newRating: number) => {

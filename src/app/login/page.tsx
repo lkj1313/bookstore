@@ -21,11 +21,29 @@ const Page = () => {
       await signInWithEmailAndPassword(auth, email, password);
       alert("로그인 완료");
       router.push("/");
-    } catch (error) {
-      alert("로그인 실패: 이메일 또는 비밀번호가 잘못되었습니다");
+    } catch (error: any) {
+      // Firebase 에러 코드에 따른 메시지 처리
+      let errorMessage = "로그인 실패: ";
+      switch (error.code) {
+        case "auth/invalid-email":
+          errorMessage += "유효하지 않은 이메일 형식입니다.";
+          break;
+        case "auth/user-disabled":
+          errorMessage += "사용자 계정이 비활성화되었습니다.";
+          break;
+        case "auth/user-not-found":
+          errorMessage += "해당 이메일 주소의 사용자를 찾을 수 없습니다.";
+          break;
+        case "auth/wrong-password":
+          errorMessage += "잘못된 비밀번호입니다.";
+          break;
+        default:
+          errorMessage += error.message;
+          break;
+      }
+      alert(errorMessage);
     }
   };
-
   return (
     <div
       style={{
@@ -76,7 +94,7 @@ const Page = () => {
                   </div>
                 </form>
                 <div className="d-grid mt-3">
-                  <Link href="/signup" className="btn btn-primary">
+                  <Link href="/signup" className="btn btn-secondary">
                     Signup
                   </Link>
                 </div>
