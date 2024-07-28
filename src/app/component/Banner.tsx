@@ -27,7 +27,7 @@ const Banner = () => {
   const [query3, setQuery3] = useState<string>("강아지");
   const [results3, setResults3] = useState<Result[]>([]);
   const [showContent, setShowContent] = useState<boolean>(false);
-  console.log(process.env);
+
   useEffect(() => {
     fetchData();
     fetchData2();

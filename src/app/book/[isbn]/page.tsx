@@ -2,11 +2,12 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { BookInfo } from "@/components/book/BookInfo";
-import { BookPrice } from "@/components/book/BookPrice";
-import { BookDelivery } from "@/components/book/BookDelivery";
-import BookCart from "@/components/book/BookCart";
-import { Container } from "react-bootstrap";
+import { BookInfo } from "@/app/book/[isbn]/component/BookInfo";
+import { BookPrice } from "@/app/book/[isbn]/component/BookPrice";
+import { BookDelivery } from "@/app/book/[isbn]/component/BookDelivery";
+import BookCart from "@/app/book/[isbn]/component/BookCart";
+import ModalComponent from "./component/ModalComponent";
+import BookReview from "./component/BookReview";
 
 interface PageProps {
   params: {
@@ -28,7 +29,10 @@ interface Book {
 const BookPage = (props: PageProps) => {
   const { isbn } = props.params;
   const [book, setBook] = useState<Book>({});
-
+  const [showModal, setShowModal] = useState(false);
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
   useEffect(() => {
     if (isbn) {
       const fetchBook = async () => {
@@ -76,6 +80,7 @@ const BookPage = (props: PageProps) => {
           <BookCart book={book} />
         </div>
       </div>
+      <BookReview book={book} />
     </div>
   );
 };

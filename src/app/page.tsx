@@ -1,4 +1,4 @@
-import Banner from "@/components/Banner";
+import Banner from "@/app/component/Banner";
 import "@/assets/scss/global.scss";
 
 export default function Home() {

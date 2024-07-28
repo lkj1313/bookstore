@@ -7,7 +7,6 @@ import {
   query,
   where,
   updateDoc,
-  doc,
 } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import { db, auth } from "@/firebaseConfig";
