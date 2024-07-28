@@ -33,7 +33,7 @@ const BannerSlide: React.FC<BannerSlideProps> = ({ results }) => {
                     className="d-block position-relative"
                     style={{
                       width: "50%",
-                      height: "100%",
+                      height: "300px",
                       marginLeft: "5px",
                       boxSizing: "border-box",
                     }}
