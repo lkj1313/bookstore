@@ -65,9 +65,9 @@ const page = () => {
       }}
     >
       <div className="container">
-        <div className="row justify-content-center mt-5">
-          <div className="col-md-6">
-            <div className="card">
+        <div className="row justify-content-center">
+          <div className="col-md-4">
+            <div className="card" style={{ height: "100%" }}>
               <div className="card-header">Signnup</div>
               <div className="card-body">
                 <form onSubmit={handleSubmit}>

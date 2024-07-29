@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Container, Button } from "react-bootstrap";
+import { Container, Button, Alert } from "react-bootstrap";
 import Link from "next/link";
 
 interface PageProps {
@@ -80,85 +80,96 @@ const SearchResultPage = (props: PageProps) => {
   return (
     <div className={`fade-in ${showContent ? "show" : ""}`}>
       <Container style={{ marginTop: "30px" }}>
-        <div className="row">
-          {books
-            .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
-            .map((book, index) => (
-              <div
-                className="col-lg-4 col-md-6 col-sm-12 bookListBox"
-                key={index}
-              >
-                <div
-                  className="card"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    padding: "10px",
-                    border: "0.3px solid #D2E1FF",
-                    alignItems: "center",
-                    marginBottom: "10px",
-                    overflow: "hidden",
-                  }}
-                >
-                  <Link
-                    href={`/book/${book.isbn}`}
-                    style={{ height: "65%", width: "100%" }}
-                  >
-                    <img
-                      style={{ height: "100%", width: "100%" }}
-                      src={book.image}
-                      className={`card-img-top img-darken-on-hover `}
-                      alt={book.title}
-                    />
-                  </Link>
+        {books.length === 0 ? (
+          <Alert variant="warning" style={{ textAlign: "center" }}>
+            검색 결과가 없습니다.
+          </Alert>
+        ) : (
+          <>
+            <div className="row">
+              {books
+                .slice(
+                  (currentPage - 1) * itemsPerPage,
+                  currentPage * itemsPerPage
+                )
+                .map((book, index) => (
                   <div
-                    className="card-body"
-                    style={{
-                      textAlign: "center",
-                    }}
+                    className="col-lg-4 col-md-6 col-sm-12 bookListBox"
+                    key={index}
                   >
-                    <h5
-                      className="card-title rato-paragraph"
-                      style={{ marginTop: "10px" }}
+                    <div
+                      className="card"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        padding: "10px",
+                        border: "0.3px solid #D2E1FF",
+                        alignItems: "center",
+                        marginBottom: "10px",
+                        overflow: "hidden",
+                      }}
                     >
-                      {book.title}
-                    </h5>
-                    <p style={{ fontWeight: "normal" }}>
-                      {book.author.replace(/\^/g, ", ")}
-                    </p>
-                    <span>₩{parseInt(book.discount).toLocaleString()}</span>
+                      <Link
+                        href={`/book/${book.isbn}`}
+                        style={{ height: "65%", width: "100%" }}
+                      >
+                        <img
+                          style={{ height: "100%", width: "100%" }}
+                          src={book.image}
+                          className={`card-img-top img-darken-on-hover `}
+                          alt={book.title}
+                        />
+                      </Link>
+                      <div
+                        className="card-body"
+                        style={{
+                          textAlign: "center",
+                        }}
+                      >
+                        <h5
+                          className="card-title rato-paragraph"
+                          style={{ marginTop: "10px" }}
+                        >
+                          {book.title}
+                        </h5>
+                        <p style={{ fontWeight: "normal" }}>
+                          {book.author.replace(/\^/g, ", ")}
+                        </p>
+                        <span>₩{parseInt(book.discount).toLocaleString()}</span>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            ))}
-        </div>
-        {totalPages > 1 && (
-          <nav
-            aria-label="Page navigation example"
-            style={{ display: "flex", justifyContent: "center" }}
-          >
-            <ul className="pagination">
-              {Array.from(
-                { length: endPage - startPage + 1 },
-                (_, i) => i + startPage
-              ).map((pageNum) => (
-                <li
-                  className={`page-item ${
-                    pageNum === currentPage ? "active" : ""
-                  }`}
-                  key={pageNum}
-                >
-                  <a
-                    className="page-link"
-                    href={`#`}
-                    onClick={() => handlePageClick(pageNum)}
-                  >
-                    {pageNum}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
+                ))}
+            </div>
+            {totalPages > 1 && (
+              <nav
+                aria-label="Page navigation example"
+                style={{ display: "flex", justifyContent: "center" }}
+              >
+                <ul className="pagination">
+                  {Array.from(
+                    { length: endPage - startPage + 1 },
+                    (_, i) => i + startPage
+                  ).map((pageNum) => (
+                    <li
+                      className={`page-item ${
+                        pageNum === currentPage ? "active" : ""
+                      }`}
+                      key={pageNum}
+                    >
+                      <a
+                        className="page-link"
+                        href={`#`}
+                        onClick={() => handlePageClick(pageNum)}
+                      >
+                        {pageNum}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            )}
+          </>
         )}
         {showScrollToTop && (
           <Button

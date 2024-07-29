@@ -56,7 +56,7 @@ const Page = () => {
     >
       <div className="container">
         <div className="row d-flex align-items-center justify-content-center mt-5">
-          <div className="col-md-6">
+          <div className="col-md-4">
             <div className="card">
               <div className="card-header">Login</div>
               <div className="card-body">
@@ -99,10 +99,11 @@ const Page = () => {
                   </Link>
                 </div>
               </div>
-            </div>
+            </div>{" "}
+            testId : test@gmail.com password : 123456
           </div>
-        </div>
-      </div>
+        </div>{" "}
+      </div>{" "}
     </div>
   );
 };

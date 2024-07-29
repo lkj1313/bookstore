@@ -4,8 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "@/assets/scss/global.scss";
 import Header from "@/app/component/Header";
 import Footer from "@/app/component/Footer";
-
-// const inter = Inter({ subsets: ["latin"] });
+import ScrollToTop from "./component/utils/ScrollToTop";
 
 export const metadata: Metadata = {
   title: "L's Librarystore",
@@ -32,6 +31,7 @@ export default function RootLayout({
           }}
         >
           <Header />
+          <ScrollToTop />
           {children}
         </div>
         <Footer />

@@ -137,6 +137,14 @@ const CartPage = () => {
     }
   };
 
+  const handleSelectAll = () => {
+    if (selectedItems.size === cartItems.length) {
+      setSelectedItems(new Set()); // 전체 선택 해제
+    } else {
+      setSelectedItems(new Set(cartItems.map((item) => item.id))); // 전체 선택
+    }
+  };
+
   return (
     <div className="container mt-4">
       <h1>Cart</h1>
@@ -145,11 +153,27 @@ const CartPage = () => {
         <p>Cart에 상품이 없습니다.</p>
       ) : (
         <div className={`fade-in ${showContent ? "show" : ""}`}>
-          <div className="list-group mb-4">
+          <div
+            className="list-group mb-4"
+            style={{
+              maxHeight: "600px",
+              overflowY: "auto",
+              overflowX: "hidden",
+            }}
+          >
+            <div className="list-group-item">
+              <input
+                type="checkbox"
+                className="me-3"
+                checked={selectedItems.size === cartItems.length}
+                onChange={handleSelectAll}
+              />
+              <label>전체 선택</label>
+            </div>
             {cartItems.map((item) => (
               <div
                 key={item.id}
-                className={` row list-group-item d-flex justify-content-between align-items-center  ${
+                className={`row list-group-item d-flex justify-content-between align-items-center ${
                   item.isDeleting ? "fade-out" : ""
                 }`}
               >
