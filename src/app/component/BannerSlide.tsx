@@ -42,7 +42,7 @@ const BannerSlide: React.FC<BannerSlideProps> = ({ results }) => {
                   />
                 </div>
                 <div className="col-12 col-md-8 d-flex flex-column ">
-                  <div style={{ marginTop: "10px", boxSizing: "border-box" }}>
+                  <div style={{ marginTop: "5px", boxSizing: "border-box" }}>
                     <div className="customLink md-flex">
                       <p
                         className="fs-4 text-center text-md-start"
@@ -50,13 +50,21 @@ const BannerSlide: React.FC<BannerSlideProps> = ({ results }) => {
                           marginBottom: "0",
                           marginRight: "10px",
                           width: "80%",
+                          whiteSpace: "nowrap",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
                         }}
                       >
                         {item.title}
                       </p>
                       <p
                         className="fw-normal text-center text-md-start"
-                        style={{ marginTop: "20px", marginBottom: "40px" }}
+                        style={{
+                          marginTop: "3px",
+                          marginBottom: "40px",
+                          whiteSpace: "nowrap",
+                          textOverflow: "ellipsis",
+                        }}
                       >
                         {item.author}
                       </p>

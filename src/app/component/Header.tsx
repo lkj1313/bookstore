@@ -98,19 +98,31 @@ const Header = () => {
             >
               {isLoggedIn ? (
                 <Nav.Link onClick={handleLogout}>
-                  <button type="button" className="btn btn-outline-primary">
+                  <button
+                    type="button"
+                    className="btn btn-outline-primary "
+                    style={{ width: "100%" }}
+                  >
                     Logout
                   </button>
                 </Nav.Link>
               ) : (
                 <Nav.Link href="/login">
-                  <button type="button" className="btn btn-outline-primary">
+                  <button
+                    type="button"
+                    className="btn btn-outline-primary"
+                    style={{ width: "100%" }}
+                  >
                     Login
                   </button>
                 </Nav.Link>
               )}
               <Nav.Link onClick={handleCartClick}>
-                <button type="button" className="btn btn-outline-primary">
+                <button
+                  type="button"
+                  className="btn btn-outline-primary"
+                  style={{ width: "100%" }}
+                >
                   Cart
                 </button>
               </Nav.Link>
