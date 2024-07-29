@@ -27,7 +27,14 @@ const BannerSlide: React.FC<BannerSlideProps> = ({ results }) => {
               href={`/book/${item.isbn}`}
               passHref
             >
-              <div className="row bannerSlideRowContainer img-darken-on-hover d-flex flex-wrap">
+              <div
+                className="row bannerSlideRowContainer img-darken-on-hover d-flex flex-wrap "
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "100%",
+                }}
+              >
                 <div className="col-12 col-md-4 d-flex justify-content-center align-items-center p-2">
                   <img
                     className="d-block position-relative"
@@ -62,8 +69,6 @@ const BannerSlide: React.FC<BannerSlideProps> = ({ results }) => {
                         style={{
                           marginTop: "3px",
                           marginBottom: "40px",
-                          whiteSpace: "nowrap",
-                          textOverflow: "ellipsis",
                         }}
                       >
                         {item.author}

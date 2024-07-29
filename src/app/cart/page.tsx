@@ -10,6 +10,7 @@ import {
 import { db, auth } from "@/firebaseConfig"; // Firebase 설정 파일 import
 import { onAuthStateChanged } from "firebase/auth";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useRouter } from "next/navigation";
 
 interface Book {
   author?: string;
@@ -35,6 +36,8 @@ const CartPage = () => {
   const [userId, setUserId] = useState<string | null>(null);
   const [selectedItems, setSelectedItems] = useState<Set<string>>(new Set());
   const [showContent, setShowContent] = useState<boolean>(false);
+  const router = useRouter();
+  console.log(cartItems);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -74,6 +77,10 @@ const CartPage = () => {
   const handleDelete = async (id: string) => {
     if (!userId) return;
 
+    // 사용자에게 정말 삭제할 것인지 물어보기
+    const isConfirmed = window.confirm("정말 삭제하시겠습니까?");
+    if (!isConfirmed) return;
+
     // 애니메이션을 위해 isDeleting 상태를 true로 설정
     setCartItems((prevItems) =>
       prevItems.map((item) =>
@@ -88,6 +95,12 @@ const CartPage = () => {
         setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
       } catch (e) {
         console.error("Error removing document: ", e);
+        // 에러 발생 시 삭제 상태를 원래대로 되돌림
+        setCartItems((prevItems) =>
+          prevItems.map((item) =>
+            item.id === id ? { ...item, isDeleting: false } : item
+          )
+        );
       }
     }, 1000); // 애니메이션 시간과 맞추기
   };
@@ -108,7 +121,7 @@ const CartPage = () => {
   };
 
   const handleCheckboxChange = (id: string) => {
-    //체크박스 상태를 변경하여 선택된 항목의 ID를 추가 또는 제거
+    // 체크박스 상태를 변경하여 선택된 항목의 ID를 추가 또는 제거
     setSelectedItems((prev) => {
       const newSet = new Set(prev);
       if (newSet.has(id)) {
@@ -145,6 +158,10 @@ const CartPage = () => {
     }
   };
 
+  const handleImageClick = (isbn: string | undefined) => {
+    router.push(`/book/${isbn}`);
+  };
+
   return (
     <div className="container mt-4">
       <h1>Cart</h1>
@@ -173,24 +190,31 @@ const CartPage = () => {
             {cartItems.map((item) => (
               <div
                 key={item.id}
-                className={`row list-group-item d-flex justify-content-between align-items-center ${
+                className={`list-group-item d-flex flex-column flex-md-row justify-content-between align-items-center ${
                   item.isDeleting ? "fade-out" : ""
                 }`}
               >
-                <div className="d-flex align-items-center col-9">
+                <div className="d-flex align-items-center col-12 col-md-1 mb-2 mb-md-0">
                   <input
                     type="checkbox"
                     className="me-3"
                     checked={selectedItems.has(item.id)}
                     onChange={() => handleCheckboxChange(item.id)}
                   />
+                </div>
+                <div className="d-flex align-items-center col-12 col-md-6 mb-2 mb-md-0">
                   <img
                     src={item.book.image}
                     alt={item.book.title}
-                    className="img-thumbnail"
-                    style={{ width: "100px", height: "auto" }}
+                    className="img-thumbnail me-3"
+                    style={{
+                      width: "100px",
+                      height: "auto",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => handleImageClick(item.book.isbn)}
                   />
-                  <div className="ms-3">
+                  <div>
                     <h5>{item.book.title}</h5>
                     <p>
                       수량:
@@ -211,7 +235,7 @@ const CartPage = () => {
                     </p>
                   </div>
                 </div>
-                <div className="col-3 d-flex flex-column align-items-end">
+                <div className="d-flex flex-column align-items-end col-12 col-md-3">
                   <button className="btn btn-primary mb-2 w-100" disabled>
                     주문하기
                   </button>

@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 import { BookInfo } from "@/app/book/[isbn]/component/BookInfo";
 import { BookPrice } from "@/app/book/[isbn]/component/BookPrice";
 import { BookDelivery } from "@/app/book/[isbn]/component/BookDelivery";
 import BookCart from "@/app/book/[isbn]/component/BookCart";
-import ModalComponent from "./component/ModalComponent";
 import BookReview from "./component/BookReview";
 
 interface PageProps {
@@ -29,12 +29,9 @@ interface Book {
 const BookPage = (props: PageProps) => {
   const { isbn } = props.params;
   const [book, setBook] = useState<Book>({});
-  const [showModal, setShowModal] = useState(false);
-  const [showContent, setShowContent] = useState<boolean>(false);
 
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
+  const router = useRouter();
+  const [showContent, setShowContent] = useState<boolean>(false);
 
   useEffect(() => {
     if (isbn) {
@@ -55,24 +52,25 @@ const BookPage = (props: PageProps) => {
 
       fetchBook();
     }
-  }, [isbn]);
+  }, [isbn, router]);
 
   return (
     <div className={`fade-in ${showContent ? "show" : ""}`}>
       <div className="container mt-4">
         <div className="row">
           <div className="col-12 col-md-4 d-flex flex-column p-0">
-            <img
-              style={{
-                height: "500px",
-                width: "auto",
-                // objectFit: "cover",
-                marginBottom: "10px",
-              }}
-              className="book-image"
-              src={book.image}
-              alt="Book cover"
-            />
+            {book.image && ( // book.image가 존재할 경우에만 이미지 렌더링
+              <img
+                style={{
+                  height: "500px",
+                  width: "auto",
+                  marginBottom: "10px",
+                }}
+                className="book-image"
+                src={book.image}
+                alt="Book cover"
+              />
+            )}
           </div>
           <div className="col-12 col-md-7 ms-md-4 position-relative">
             <div className="row">
